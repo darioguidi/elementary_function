@@ -3,7 +3,7 @@
 int main(void)
 {
     // Inizializzare SDL
-    if((SDL_INIT(SDL_INIT_VIDEO))!=0){
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         printf("Errore di inizializzazione di SDL \n");
         return 0;
     }
@@ -37,7 +37,7 @@ int main(void)
     // Variabile per determinare l'uscita dal ciclo while
     int exit = 1;
     // Variabile necessarie per determinare quale funzione studiare
-    int choose = 0
+    int choose = 0;
     // Ciclo per chiedere quale funzione studiare, attraverso un menù
     while(exit){
         // Menù
