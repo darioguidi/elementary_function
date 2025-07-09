@@ -9,6 +9,7 @@ int main(void)
     }
 
     // Creazione e configurazione della window
+    // Nella congigurazione: titolo finestra, Posizione finestra rispetto le coordinate (x,y), dimensione della finestra, attributi della finestra
     SDL_Window *window = SDL_CreateWindow(
         "Studio Funzioni Elementari",
         SDL_WINDOWPOS_CENTERED,
