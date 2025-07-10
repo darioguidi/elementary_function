@@ -14,8 +14,8 @@ int main(void)
         "Studio Funzioni Elementari",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        WIDTH,
-        HEIGHT,
+        SCREEN_WIDTH,
+        SCREEN_HEIGHT,
         SDL_WINDOW_RESIZABLE
     );
 
@@ -41,6 +41,7 @@ int main(void)
     int choose = 0;
     // Ciclo per chiedere quale funzione studiare, attraverso un menù
     while(exit){
+
         // Menù
         printf("Quale delle seguenti funzioni elementari vorresti studiare?\n");
         printf("0 - Uscire \n");
@@ -53,13 +54,60 @@ int main(void)
         switch (choose)
         {
         case 0:
+            // Condizione di uscita 
             exit = 0;
             break;
         case 1:
-            /* code */
+            // Codice per la stampa di una retta
+            // Si richiede di inserire il coeffciente angolare ed l'ordinata d'origine
+
+            // Reinizializzo i valori a zero
+            float coeff_angolare = 0.0f, ordinata_origine = 0.0f;
+            
+            printf("Inserire coefficiente angolare della retta (m): \n");
+            scanf("%f", &coeff_angolare);
+
+            printf("Inserire l'ordinata all'origine della retta (q): \n");
+            scanf("%f", &ordinata_origine);
+
+            SDL_Event event;
+
+            // Condizione ciclo
+            int running = 1;
+
+            // Questo ciclo serve a mostrare a schermo il risultato della funzione 'retta'
+            while(running){
+                // Ciclo che rimane in ascolto di possibili eventi da dover eseguire in base alla condizione associata
+                while(SDL_PollEvent(&event)){
+                    if(event.type == SDL_QUIT){
+                        printf("Chiusura del programma \n");
+                        running = 0;
+                    }
+                }
+
+                // Imposto il colore di sfondo
+                SDL_SetRenderDrawColor(renderer,0,0,0,255);
+
+                // Pulire il renderer
+                SDL_RenderClear(renderer);
+
+                drawPianoCartesiano(renderer);
+
+                // Per mostrare a schermo il contenuto del renderer
+                SDL_RenderPresent(renderer);
+
+                // Metodo per rappresentare la funzione sul piano cartesiano
+                // drawLine(renderer, coeff_angolare, ordinata_origine);
+            }
+
             break;
         default:
             printf("Scelta sbagliata, riprovare! \n");
         }
     }
+
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    return 0;
 }
