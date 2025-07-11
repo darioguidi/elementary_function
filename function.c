@@ -79,14 +79,38 @@ void drawParabola(SDL_Renderer *renderer)
     // Disegno del piano cartesiano 
     drawPianoCartesiano(renderer);
 
+    // Numerototale di punti da volere rappresentare
+    int totalNumberPoints = 800;
+
+    // Posizione iniziale dal quale iniziare a stampare i valori della funzione
+    float center_x = OFFSETT_X;
+    float center_y = OFFSETT_Y;
+
     // Definire la quantità di punti che si vogliono utilizzare per rappresentare la retta
-    Point *line = malloc(800*sizeof(Point));
+    Point *line = malloc(totalNumberPoints*sizeof(Point));
 
-    // Valorizzo i punti
-    for(int i = 0; i<800;i++){
-        line[i].x = i;
-        line[i].y = i*i;
+    // Valorizzo i punti nel quadrante I
+    float scale = 0.0f;
 
+    for(int i = 0; i<(totalNumberPoints/2); i++){
+        line[i].x = center_x + scale; 
+        line[i].y = center_y + (scale*scale);
+
+        scale = scale + 0.07f;
+
+        // Una volta che il punto è calcolato, si porcede alla sua stampa
+        drawPoint(renderer, line[i]);
+    }
+
+    // Valorizzo i punti nel quadrante I
+    scale = 0.0f;
+
+    for(int i = 0; i<(totalNumberPoints/2); i++){
+        line[i].x = -(center_x + scale); 
+        line[i].y = -(center_y + (scale*scale));
+    
+        scale = scale + 0.07f;
+    
         // Una volta che il punto è calcolato, si porcede alla sua stampa
         drawPoint(renderer, line[i]);
     }
