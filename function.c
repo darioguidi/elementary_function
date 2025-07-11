@@ -50,4 +50,47 @@ void drawPianoCartesiano(SDL_Renderer *renderer)
     free(asse_ascisse);
 }
 
-// Metodo per la rappresentazione della funzone retta
+// Metodo per la rappresentazione della funzone retta - y = mx +q
+void drawLine(SDL_Renderer *renderer, float coeff_angolare, float ordinata_origine)
+{
+
+    // Disegno del piano cartesiano 
+    drawPianoCartesiano(renderer);
+
+    // Definire la quantità di punti che si vogliono utilizzare per rappresentare la retta
+    Point *line = malloc(800*sizeof(Point));
+
+    // Valorizzo i punti
+    for(int i = 0; i<800;i++){
+        line[i].x = i;
+        line[i].y = (coeff_angolare*line[i].x) + ordinata_origine;
+
+        // Una volta che il punto è calcolato, si porcede alla sua stampa
+        drawPoint(renderer, line[i]);
+    }
+
+    // Liberiamo lo spazio di memoria allocato per disegnare la retta
+    free(line);
+}
+
+// y = x^2
+void drawParabola(SDL_Renderer *renderer)
+{
+    // Disegno del piano cartesiano 
+    drawPianoCartesiano(renderer);
+
+    // Definire la quantità di punti che si vogliono utilizzare per rappresentare la retta
+    Point *line = malloc(800*sizeof(Point));
+
+    // Valorizzo i punti
+    for(int i = 0; i<800;i++){
+        line[i].x = i;
+        line[i].y = i*i;
+
+        // Una volta che il punto è calcolato, si porcede alla sua stampa
+        drawPoint(renderer, line[i]);
+    }
+
+    // Liberiamo lo spazio di memoria allocato per disegnare la retta
+    free(line);
+}

@@ -39,6 +39,11 @@ int main(void)
     int exit = 1;
     // Variabile necessarie per determinare quale funzione studiare
     int choose = 0;
+
+    int running;
+
+    SDL_Event event;
+
     // Ciclo per chiedere quale funzione studiare, attraverso un menù
     while(exit){
 
@@ -70,10 +75,8 @@ int main(void)
             printf("Inserire l'ordinata all'origine della retta (q): \n");
             scanf("%f", &ordinata_origine);
 
-            SDL_Event event;
-
             // Condizione ciclo
-            int running = 1;
+            running = 1;
 
             // Questo ciclo serve a mostrare a schermo il risultato della funzione 'retta'
             while(running){
@@ -91,15 +94,43 @@ int main(void)
                 // Pulire il renderer
                 SDL_RenderClear(renderer);
 
-                drawPianoCartesiano(renderer);
+                // Metodo per rappresentare la funzione sul piano cartesiano
+                drawLine(renderer, coeff_angolare, ordinata_origine);
 
                 // Per mostrare a schermo il contenuto del renderer
                 SDL_RenderPresent(renderer);
-
-                // Metodo per rappresentare la funzione sul piano cartesiano
-                // drawLine(renderer, coeff_angolare, ordinata_origine);
             }
 
+            break;
+
+        case 2:
+            // Codice per la stampa di una retta
+
+            // Condizione ciclo
+            running = 1;
+
+            // Questo ciclo serve a mostrare a schermo il risultato della funzione 'retta'
+            while(running){
+                // Ciclo che rimane in ascolto di possibili eventi da dover eseguire in base alla condizione associata
+                while(SDL_PollEvent(&event)){
+                    if(event.type == SDL_QUIT){
+                        printf("Chiusura del programma \n");
+                        running = 0;
+                    }
+                }
+
+                // Imposto il colore di sfondo
+                SDL_SetRenderDrawColor(renderer,0,0,0,255);
+
+                // Pulire il renderer
+                SDL_RenderClear(renderer);
+
+                // Metodo per rappresentare la funzione sul piano cartesiano
+                drawParabola(renderer);
+
+                // Per mostrare a schermo il contenuto del renderer
+                SDL_RenderPresent(renderer);
+            }
             break;
         default:
             printf("Scelta sbagliata, riprovare! \n");

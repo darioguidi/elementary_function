@@ -10,7 +10,7 @@
 #define OFFSETT_X SCREEN_WIDTH/2
 #define OFFSETT_Y SCREEN_HEIGHT/2
 #define FOCAL_LENGTH 200.0f
-#define SIZE_POINT 3
+#define SIZE_POINT 2
 
 // Variables
 
@@ -30,3 +30,4 @@ void drawPianoCartesiano(SDL_Renderer *renderer);
 
 // Metodi per il calcolo/rappresentazione dei dati
 void drawLine(SDL_Renderer *renderer, float coeff_angolare, float ordinata_origine);
+void drawParabola(SDL_Renderer *renderer);
